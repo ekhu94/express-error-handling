@@ -58,6 +58,11 @@ app.post(
   })
 );
 
+app.use((err, req, res, next) => {
+  const { status = 500, message = 'something went wrong' } = err;
+  res.status(status).send(message);
+});
+
 app.listen(3000, () => {
   console.log('Server listening on Port 3000');
 });
